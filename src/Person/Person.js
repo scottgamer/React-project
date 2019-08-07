@@ -1,7 +1,6 @@
 import React from 'react';
 import './Person.css';
 
-//this is a stateless component (dumb-view)
 const person = (props) => {
   return (
     <div className="Person">
