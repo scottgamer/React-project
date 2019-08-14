@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+
+  // executes for every render cycle
+  useEffect(() => {
+    console.log('Cockpit.js useEffect');
+
+    // Http request...
+    //componentDidMount & componentDidUpdate in one call
+
+    setTimeout(() => {
+      alert('Saved data');
+    }, 1000)
+  }, []);
+
+
 
   const assignedClasses = [];
   let btnClass = '';
 
-  if(props.showPerson){
+  if (props.showPerson) {
     btnClass = classes.Red;
   }
-  
+
 
   if (props.persons.length <= 2) {
     assignedClasses.push(classes.red);
@@ -20,14 +34,15 @@ const cockpit = (props) => {
 
   return (
     <div className={classes.Cockpit}>
-      <h1>Hi, I'm a React App</h1>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(' ')}>This is really working!</p>
       <button
+        className={btnClass}
         onClick={props.clicked}>
         Toggle Persons
-        </button>
+      </button>
     </div>
   );
 };
 
-export default cockpit;
+export default Cockpit;
