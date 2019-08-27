@@ -14,9 +14,19 @@ class Persons extends Component {
   //   console.log('Persons.js componentWillReceiveProps', nextProps);
   // }
 
+  // when every gets re-render
   shouldComponentUpdate(nextProps, nextState) {
     console.log('Persons.js shouldComponentUpdate');
-    return true; //cont updating
+    if (
+      nextProps.persons !== this.props.persons ||
+      nextProps.changed !== this.props.changed ||
+      nextProps.clicked !== this.props.clicked
+    ) {
+      return true; //cont updating
+    }
+    // doesnt re-render
+    return false;
+
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -31,6 +41,11 @@ class Persons extends Component {
 
   componentDidUpdate() {
     console.log('Persons.js componentDidUpdate');
+  }
+
+  // component gets removed
+  componentWillUnmount() {
+    console.log('Perons.js componentWillUnmount');
   }
 
   render() {
